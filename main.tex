@@ -1,0 +1,91 @@
+\documentclass{article}
+
+\usepackage{geometry}
+\usepackage{lmodern}
+\usepackage{float}
+\usepackage{fancyhdr}
+\usepackage{amssymb}
+\usepackage{natbib}
+\usepackage{xcolor}
+\usepackage{parskip}
+\usepackage{lastpage}
+\usepackage[hidelinks]{hyperref}
+\geometry{a4paper,left=3.18cm,right=3.18cm,top=2.54cm,bottom=2.54cm}
+
+\fancyhf{}
+\fancyhead[l]{Team \#15803}
+\fancyhead[r]{Page \thepage\ of \pageref{LastPage}}
+\pagestyle{fancy}
+
+\renewcommand{\em}[1]{{\huge \textbf{\textcolor{red}{#1}}}}
+\newcommand{\todo}[1]{\textbf{\textcolor{red}{TODO:} #1}}
+
+\parskip=6pt
+
+\begin{document}
+
+\thispagestyle{empty}
+
+\begin{center}
+	Team Control Number
+	
+	\em{15803}
+
+	Problem Chosen
+	
+	\em{B}
+
+	\textbf{\large 2024} \\
+	\textbf{HiMCM}
+
+	\textbf{\small Summary Sheet}
+\end{center}
+
+\noindent\rule{\textwidth}{1pt}
+
+\begin{center}
+	\section*{Summary}
+\end{center}
+
+\newpage
+
+{\center\tableofcontents}
+
+\newpage
+
+\section{Introduction}
+
+\subsection{Background information}
+
+Under the current global trend of technology advancement, high-powered computing (HPC) is gaining rising attention for the increasing demand of computationally intensive tasks such as data science, artificial intelligence (AI) training, and cryptocurrency mining.
+
+It is very common to use a massive number of dedicated hardware with strong computating power for these tasks. Data centers are the specific spaces to hold these hardware. The operation of data centers is usually extremely energy-consuming, with a tremendous demand of electricity to keep the computer systems running and to cool them down. The intensive use of electricity, contributing heavily to global warming, as well as a lot of other problems, e.g. water usage, e-waste, etc., poses the environmental concerns of HPC data centers.
+
+As sustainability arising as one of the most important development goals in the twenty-first century, it is high time we take action to assess the environmental consequences of HPC data centers and minimize the impacts during their operations. We proposed an approach to evaluate the environmental impacts due to HPC through mathematical models.
+
+\todo{add more about past researches on energy demands; cites needed}
+
+\todo{dataset and used tools}
+
+\subsection{Restatement of the problems}
+
+\todo{adjust this section later}
+
+In this solution paper, we will solve two problems regarding HPC's environmental impacts.
+
+\paragraph{Annual carbon emissions.} We will first construct a model to figure up the total carbon emissions of HPC's energy consumptions worldwide in one year. Various server clusters, data centers, etc. that can be regarded as HPC systems should all be considered. We need to create a mathematical model that calculates how much and what types of energies are used. A fundamental estimate of the carbon emission with all computer systems operating at the full capacity continuously is neede to be calculated. To be more realistic, we will also need to take the utilization rates of such systems into consideration and model the data in case of utilizing at an averaged utilization rate. Using the model, we also need to provide insights on the future growth of HPC and the problem in the year 2030.
+
+\paragraph{Comprehensive environmental impact assessment.} A first refinement on the model will be its correlation with energy mixes as different energy mixes have very different carbon emissions. On the other hand, since carbon emission, despite being the most concerned aspect, is only one of the multiple key concerns of HPC, we will further extend the model. We will take more factors into consideration and devise a comprehensive approach of assessing multiple indicators. Utilizing the new model, more theoretically supported suggestions on policies and evaluation on the effectiveness of various policies will also be conducted.
+
+\subsection{Our work}
+
+\todo{}
+
+\section{Model I: the annual global carbon emissions due to HPC}
+
+\todo{}
+
+\bibliographystyle{apalike}
+\bibliography{bib.bib}
+
+\end{document}
