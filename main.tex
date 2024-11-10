@@ -1,4 +1,4 @@
-\documentclass{article}
+\documentclass[12pt]{article}
 
 \usepackage{geometry}
 \usepackage{lmodern}
@@ -9,13 +9,15 @@
 \usepackage{xcolor}
 \usepackage{parskip}
 \usepackage{lastpage}
-\usepackage[hidelinks]{hyperref}
-\geometry{a4paper,left=3.18cm,right=3.18cm,top=2.54cm,bottom=2.54cm}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\geometry{a4paper,left=1.5cm,right=1.5cm,top=2.5cm,bottom=2.5cm}
 
 \fancyhf{}
 \fancyhead[l]{Team \#15803}
 \fancyhead[r]{Page \thepage\ of \pageref{LastPage}}
 \pagestyle{fancy}
+\setlength{\headheight}{15pt}
 
 \renewcommand{\em}[1]{{\huge \textbf{\textcolor{red}{#1}}}}
 \newcommand{\todo}[1]{\textbf{\textcolor{red}{TODO:} #1}}
@@ -55,35 +57,211 @@
 
 \section{Introduction}
 
-\subsection{Background information}
+\subsection{Background Information}
 
 Under the current global trend of technology advancement, high-powered computing (HPC) is gaining rising attention for the increasing demand of computationally intensive tasks such as data science, artificial intelligence (AI) training, and cryptocurrency mining.
 
-It is very common to use a massive number of dedicated hardware with strong computating power for these tasks. Data centers are the specific spaces to hold these hardware. The operation of data centers is usually extremely energy-consuming, with a tremendous demand of electricity to keep the computer systems running and to cool them down. The intensive use of electricity, contributing heavily to global warming, as well as a lot of other problems, e.g. water usage, e-waste, etc., poses the environmental concerns of HPC data centers.
+It is very common to use a massive number of dedicated hardware with strong computating power for these tasks. Data centers are the specific spaces to hold these hardware. The operation of data centers is usually extremely energy-consuming, with a tremendous demand of electricity to keep the computer systems running and to cool them down. Cryptocurrency mining machine clusters also work similarly to data centers, with all resources dedicated for mining. The intensive use of electricity, contributing heavily to global warming, as well as a lot of other problems, e.g. water usage, e-waste, etc., poses the environmental concerns of HPC.
 
-As sustainability arising as one of the most important development goals in the twenty-first century, it is high time we take action to assess the environmental consequences of HPC data centers and minimize the impacts during their operations. We proposed an approach to evaluate the environmental impacts due to HPC through mathematical models.
+As sustainability arising as one of the most important development goals in the twenty-first century, it is high time we take action to assess the environmental consequences of HPC and to minimize its negative effects. We proposed an approach to evaluate the environmental impacts due to HPC through mathematical models.
 
 \todo{add more about past researches on energy demands; cites needed}
 
 \todo{dataset and used tools}
 
-\subsection{Restatement of the problems}
+\subsection{Restatement of the Problems}
 
 \todo{adjust this section later}
 
-In this solution paper, we will solve two problems regarding HPC's environmental impacts.
+\todo{}
 
-\paragraph{Annual carbon emissions.} We will first construct a model to figure up the total carbon emissions of HPC's energy consumptions worldwide in one year. Various server clusters, data centers, etc. that can be regarded as HPC systems should all be considered. We need to create a mathematical model that calculates how much and what types of energies are used. A fundamental estimate of the carbon emission with all computer systems operating at the full capacity continuously is neede to be calculated. To be more realistic, we will also need to take the utilization rates of such systems into consideration and model the data in case of utilizing at an averaged utilization rate. Using the model, we also need to provide insights on the future growth of HPC and the problem in the year 2030.
-
-\paragraph{Comprehensive environmental impact assessment.} A first refinement on the model will be its correlation with energy mixes as different energy mixes have very different carbon emissions. On the other hand, since carbon emission, despite being the most concerned aspect, is only one of the multiple key concerns of HPC, we will further extend the model. We will take more factors into consideration and devise a comprehensive approach of assessing multiple indicators. Utilizing the new model, more theoretically supported suggestions on policies and evaluation on the effectiveness of various policies will also be conducted.
-
-\subsection{Our work}
+\subsection{Our Work}
 
 \todo{}
 
-\section{Model I: the annual global carbon emissions due to HPC}
+\section{HPC Energy Consumption Model}
 
-\todo{}
+In this section, we model the annual worldwide energy consumption of \textit{high-powered computing} (HPC). HPC includes various computationally intensive tasks, which are mostly carried out by computer systems in data centers and cryptocurrency mining machines. Therefore, it is feasible to estimate the total energy consumption of HPC from these two sectors.
+
+\begin{table}[t]
+	\begin{tabular}{ccc}
+		a&a&a \\
+	\end{tabular}
+\end{table}
+
+\subsection{Assumptions}
+
+\begin{enumerate}
+	\item The total power data offered by data center providers reflects the maximum power. \\
+	\textbf{Justification:} The data of total power in a data center is typically defined by the machines' design specifications. Therefore, we interpret this as the hard limit of the possible power allocated on the machines.
+	
+	\item Possible non-HPC data centers are also included. \\
+	\textbf{Justification:} Since most data centers are hybrid, it is hard to exactly distinguish between HPC and non-HPC ones. Non-HPC hardware such as storage may also contribute to the process of HPC. Moreover, they share most of the infrastructure with HPC consuming a more significant amount of energy. Therefore, including some possible non-HPC facilities is not likely to create a large impact on the results.
+	
+	\item All data are from a same, \textit{short-run} scenario where there are no differences in conditions. \\
+	\textbf{Justification:} Most of the data we found are statistics or information within or throughout the year 2023 and 2024. We tried to use the latest statistics, but this is not always available since the year of 2024 is not over yet by the time we work on this model. The assumption of the \textit{short-run} data means that we regard all data as taken from a same set of conditions with no development or changes between them; delving into the detailed differences would make the model way too complex and beyond the intended scope.
+
+	\item The utilization rates across different data centers are the same. \\
+	\textbf{Justification:} The actual utilization rates across different data centers are not varying very much. Since the emphasis of our model is on the estimation of total energy, the detailed utilization rates on each data center are not of significant interest and neglected.
+
+	\item Bitcoin (BTC) mining is considered as the whole cryptocurrency mining industry. \\
+	\textbf{Justification:} By the time we work on this model, Bitcoin (BTC) is the cryptocurrency with the largest capitalization and mining energy consumption. Cryptocurrencies other than BTC, namely \textit{altcoins}, consumes way less energy than BTC mining, especially with the second largest Ethereum (ETH) switched to proof of stake (PoS) instead of the traditional proof of work (PoW) mining.
+
+	\item Cryptocurrency mining machines are always operating at their \textit{full capacity rate}. \\
+	\textbf{Justification:} As a highly-competitive industry, miners are profit-driven and tend to maximize their profits. Mining at the machines' full capacity ensures the maximum output which lowers the averaged fixed costs, such as the costs of mining machines and related infrastructures, and thus maximizes the profits.
+
+	\item All other unlisted source of HPC are not considered. \\
+	\textbf{Justification:} We believe the two sectors are enough to give a representation of all HPC activities. Unlisted sources, such as altcoin mining and small-scale server clusters, contributes very little on the total energy consumption.
+\end{enumerate}
+
+\subsection{Model Overview}
+
+\begin{table}[t]
+	\centering
+	\caption{Definition of symbols. Units: TWh: terawatt hours; MW: megawatts; TH: terahashes.}
+	\label{table_symbols_q1}
+	\begin{tabular}{lll}
+		\hline
+		\textbf{Symbol} & \textbf{Unit} & \textbf{Description} \\
+		\hline
+		$E$ & TWh & Total annual energy consumption of all HPC activities. \\
+		$E_D$ & TWh & Total annual energy consumption of data centers. \\
+		$E_M$ & TWh & Total annual energy consumption of cryptocurrency mining. \\
+		$T$ & h & The time duration (in this case, $\rm = 1yr = 8760h$). \\
+		$P_i$ & MW & Total maximum power of data center $i$. \\
+		$\overline{\rho}$ & -- & Average utilization rate of data centers. \\
+		$H$ & TH/s & Total hash rate performed by the network. \\
+		$\kappa$ & -- & Multiplier between the average and the optimal mining efficiency. \\
+		$\varepsilon_{\rm opt}$ & J/TH & Efficiency of the best mining machine (power per hash rate). \\
+		$\overline{\varepsilon}$ & J/TH & Average efficiency among mining machines ($\overline{\varepsilon} = \kappa \varepsilon_{\rm opt}$). \\
+		\hline
+	\end{tabular}
+\end{table}
+
+We define a set of symbols as in Table \ref{table_symbols_q1}. The total annual power consumption of HPC is
+\begin{equation}
+	E = E_D + E_M,
+\end{equation}
+which is the sum of energy consumed by data centers and cryptocurrency mining. In this model, some proportional relationships will be intentionally introduced to facilitate the subsequent models.
+
+\paragraph{Energy consumption of data centers.} The annual energy consumption of data centers \textit{at full capacity} is straightforwardly defines as
+\begin{equation}
+	E_{D \rm max} = T \sum_i P_i,
+\end{equation}
+which is the product of the time of a year and the sum of maximum powers of all data centers. To get the case at \textit{average utilization rate}, we simply multiply it by the rate:
+\begin{equation}
+	E_{D \rm avg} = \overline{\rho} E_{D \rm max} = \overline{\rho} T \sum_i P_i.
+\end{equation}
+
+\paragraph{Energy consumption of cryptocurrency mining.} During cryptocurrency mining, many miners join a network to solve blocks. The \textit{hash rate} is a measure of the computational power of a machine, defined as the number of hash calculations performed per unit time. The total hash rate $H$ of a network is the sum of the hash rates of all machines connected to the network, with a higher value representing a higher competition among miners.
+
+A mining machine works at a specific power and holds a specific computational power, or hash rate. The ratio between the working power and its computational power gives its \textit{efficiency} $\varepsilon$, in the unit of power per hash rate (equivalent to energy per hash).
+
+To calculate the total power $P$ in a network, we multiply the average efficiency $\overline{\varepsilon}$ among all mining machines with the network's total hash rate $H$:
+\begin{equation}
+	P = \overline{\varepsilon} H.
+	\label{eq_mining_power}
+\end{equation}
+
+Over time, new mining machines with more advanced technologies are produced and slowly take up the market whilst old machines are still being used (economically speaking, they will be used until their outputs are lower than their operating costs). Therefore, the replacement process takes time; the average efficiency is always lower than the efficiency of the latest machine.
+
+We define $\kappa$ as the ratio between the average efficiency $\overline{\varepsilon}$ (among all machines) and the optimal efficiency $\varepsilon_{\rm opt}$ (of the current best model). Equation \ref{eq_mining_power} can be rewritten as
+\begin{equation}
+	P = \overline{\varepsilon} H = \kappa \varepsilon_{\rm opt} H.
+\end{equation}
+
+Finally, we multiply the power with the one-year time $T$ to get the annual energy consumption:
+\begin{equation}
+	E_M = PT = \kappa \varepsilon_{\rm opt} HT;
+\end{equation}
+this is both the \textit{full capacity} level and the \textit{average utilization} level since cryptocurrency mining is assumed to be always operating at the maximum utilization possible.
+
+\paragraph{Total annual energy consumption.} Combining the above equations, the total annual energy consumption under \textit{full capacity} is expressed as
+\begin{equation}
+	E_{\rm max} = E_{D \rm max} + E_M = T \sum_i P_i + \kappa \varepsilon_{\rm opt} HT,
+\end{equation}
+and the total annual energy consumption at \textit{average utilization rate} is
+\begin{equation}
+	E_{\rm avg} = E_{D \rm avg} + E_M = \overline{\rho} T \sum_i P_i + \kappa \varepsilon_{\rm opt} HT.
+\end{equation}
+
+\subsection{Assessing the Model using Current Data}
+
+To assess the accuracy of the energy consumption model, we substitute existing data into our model and compare the model's output with the related existing aggregated statistics.
+
+\paragraph{Data centers.} We developed a web crawler and fetched data from \textit{datacenters.com}, a website offering detailed information of data centers worldwide. There is a total of 4342 data centers included, with information of each's name, location, provider, space, total power, etc. Table \ref{table_data_datacenters.com} shows some of the results from the website.
+
+\begin{table}[t]
+	\centering
+	\caption{Some records of data center information from \textit{datacenters.com}. Only columns including data related to the model are displayed; names and addresses that are too long are truncated.}
+	\label{table_data_datacenters.com}
+	\small
+	\begin{tabular}{cccccc}
+		\hline
+		\textbf{ID} & \textbf{Name} & \textbf{Address} & \textbf{Total space} (sqft) & \textbf{Total power} (MW) \\
+		\hline
+		0 & Equinix: ... & ..., Tokyo, Japan & 58992 & 6.75 \\
+		1 & KAO Data: ... & ..., UK & 40000 & 40 \\
+		2 & NorthC: Eindhoven ... & ..., Netherlands & 43056 & 4.5 \\
+		3 & DC2Scale: ... & ..., France & 15000 & 1.5 \\
+		4 & DataBank: ... & ..., TX, USA & 23000 & 0.675 \\
+		5 & Digital Realty: ... & ..., Opfikon, Switzerland & 79800 & 5 \\
+		6 & Ascenty, ... & ..., São Paulo, Brazil & 22604.21 & 34 \\
+		7 & EdgeConnex: ... & ..., Calle Larga, Chile & 116519.33 & 14 \\
+		8 & Centersquare: ... & ..., MA, USA & 201590 & 15 \\
+		9 & Digital Realty: ... & ..., Tamil Nadu, India & 196000 & 20.4 \\
+		$\vdots$ &&&& \\
+		4341 & Equinix: ... & ..., São Paulo, Brazil & 52743 & 1.8 \\
+		\hline
+	\end{tabular}
+\end{table}
+
+We plotted the data as in Figure \ref{fig_data_datacenters_original}. It is worth mentioning that there are two very significant outlier values (denoted yellow on the top) exceeding $10^6$ megawatts. Obviously, it is improbable for those two data centers to consume about 13 times more power than the sum of all other ones (more intuitively, taking up almost 5\% of the total human power consumption); therefore, the data is very possibly incorrectly recorded or in a wrong unit. We thereby removed the two, and now all data are in a reasonable range, as shown in Figure \ref{fig_data_datacenters_clean}.
+
+\begin{figure}[t]
+	\centering
+	\begin{minipage}{0.48\textwidth}
+		\centering
+		\includegraphics{figures/data/datacenters.pdf}
+		\caption{The original dataset.}
+		\label{fig_data_datacenters_original}
+	\end{minipage}
+	\hfill
+	\begin{minipage}{0.48\textwidth}
+		\centering
+		\includegraphics{figures/data/datacenters_clean.pdf}
+		\caption{The dataset with outliers removed.}
+		\label{fig_data_datacenters_clean}
+	\end{minipage}
+\end{figure}
+
+We then calculated the sum of the total powers of all data centers without the outliers, yielding $\sum_i P_i = 309,160 \rm MW$. Therefore, the annual energy consumption of data centers at \textit{full capacity} is
+\begin{equation}
+	E_{D \rm max} = T \sum_i P_i =
+	\rm 8,760h \times 309,160MW \approx \mathbf{2,708TWh}.
+\end{equation}
+
+The 2024 Kubernetes Cost Benchmark Report reveals than the average utilization rate for Kubernetes server clusters is 13\%. Since Kubernetes is widely used in data centers, this figure is highly representative for general data center utilization. Therefore, we get the annual energy consumption of data centers at \textit{average utilization rate}:
+\begin{equation}
+	E_{D \rm avg} = \overline{\rho} E_{D \rm max}
+	= \rm 13\% \times 2,708TWh \approx \mathbf{352TWh}.
+\end{equation}
+
+This falls in the range of world data centers stats \todo{add stats here}.
+
+\paragraph{Cryptocurrency mining.} Using the recent (November 2024) Bitcoin network data, the total hash rate $H \approx \rm 750,000,000TH/s$. The currently most advanced mining machine is Antminer S21, with required power of 3531W and a hash rate of 300TH/s, giving the efficiency
+\begin{equation}
+	\varepsilon_{\rm opt} = \rm \frac{3531W}{300TH/s} = 11.77J/TH.
+\end{equation}
+
+The multiplier $\kappa$ is around 1.7 according to experiments. \todo{exp} This gives the total annual energy consumption of cryptocurrency mining:
+\begin{equation}
+	E_M = \kappa \varepsilon_{\rm opt} HT
+	= \rm 1.7 \times 11.77J/TH \times 750,000,000TH/s \times 8,760h \approx \mathbf{131TWh},
+\end{equation}
+which also falls in the range \todo{range}.
+
+\paragraph{Evaluation.} \todo{whether necessary?}
 
 \bibliographystyle{apalike}
 \bibliography{bib.bib}
