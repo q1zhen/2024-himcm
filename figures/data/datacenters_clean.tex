@@ -1,0 +1,24 @@
+\documentclass{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+\begin{document}
+\begin{tikzpicture}
+	\begin{axis}[
+		width=6cm, height=6cm,
+		grid=major,
+		xmode=log, xlabel={Total space (sqft)},
+		ymode=log, ylabel={Total power (MW)}
+	]
+		\addplot[
+			scatter, only marks,
+			colormap/viridis
+		]
+		table[
+			col sep=comma,
+			x=total_space,
+			y=total_power
+		] {../../data/datacenters/space_and_power_clean.csv};
+	\end{axis}
+\end{tikzpicture}
+\end{document}
