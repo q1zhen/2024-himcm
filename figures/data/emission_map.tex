@@ -1,0 +1,17 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\usepackage{graphicx}
+
+\definecolor{dg}{HTML}{238b45}
+\definecolor{lg}{HTML}{9ccb86}
+\definecolor{yl}{HTML}{fdcb6e}
+
+\begin{document}
+\small
+\begin{tikzpicture}
+	\node at (0, 0) {\includegraphics[width=12cm]{emission_map.png}};
+	\draw[fill=dg] (-5.5, -1.5) rectangle ++(0.3, 0.3) node[pos=.5, right, xshift=4pt]{country-specific};
+	\draw[fill=lg] (-5.5, -2) rectangle ++(0.3, 0.3) node[pos=.5, right, xshift=4pt]{sub-regional};
+	\draw[fill=yl] (-5.5, -2.5) rectangle ++(0.3, 0.3) node[pos=.5, right, xshift=4pt]{continental};
+\end{tikzpicture}
+\end{document}
