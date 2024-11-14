@@ -1,0 +1,34 @@
+\begin{thebibliography}{}
+
+\bibitem[Blockchain.com, 2024]{hashrate}
+Blockchain.com (2024).
+\newblock Bitcoin total hash rate.
+
+\bibitem[Cast.ai, 2024]{kubernetes_report}
+Cast.ai (2024).
+\newblock {\em 2024 Kubernetes Cost Benchmark Report}.
+\newblock Cast.ai.
+
+\bibitem[Datacenters.com, 2024]{datacenters_com}
+Datacenters.com (2024).
+\newblock Data center locations: Top cities, states, countries and regions.
+
+\bibitem[de~Vries, 2020]{btc_energy}
+de~Vries, A. (2020).
+\newblock Bitcoin’s energy consumption is underestimated: A market dynamics approach.
+\newblock {\em Energy Research \& Social Science}, 70.
+
+\bibitem[Digiconomist, 2017]{miner_avg_eff}
+Digiconomist (2017).
+\newblock {\em A Deep Dive in a Real-World Bitcoin Mine}.
+\newblock Digiconomist.
+
+\bibitem[IEA, 2024]{energy_mix_dataset}
+IEA (2024).
+\newblock {World Energy Balances 2024 Highlights (free extract)}.
+
+\bibitem[Neeti and Selvasundar, 2024]{best_miner}
+Neeti and Selvasundar, V. (2024).
+\newblock {\em Best Bitcoin Miners \& Crypto Mining Rigs: Ultimate Guide for ASIC Miners In 2024}.
+
+\end{thebibliography}
