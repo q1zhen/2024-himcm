@@ -1,0 +1,57 @@
+\documentclass{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+\begin{document}
+\begin{tikzpicture}
+	\pgfplotsset{
+		width=8cm,
+		height=6cm,
+	}
+	\begin{axis}[
+		axis y line*=left,
+		xlabel={Years $t$ (in A.D.)},
+		ylabel={Best efficiency $\varepsilon_{\rm opt}$ (J/TH)},
+		title={Overview of the predicted components},
+		grid=major
+	]
+		\addplot[blue, thick, mark=o, domain=2010:2030] {2.6e288 * exp(-0.3268 * x)};
+	\end{axis}
+
+	\begin{axis}[
+		axis y line*=right,
+		axis x line=none,
+		ylabel={Total hash rate $H$ (TH/s)},
+		legend cell align={left},
+		legend style={
+			at={(0.5, 0.97)},
+			anchor=north,
+		}
+	]
+	\addlegendimage{blue, thick, mark=o}
+	\addlegendentry{$\varepsilon_{\rm opt}(t)$ (left axis)}
+	\addplot[brown, thick, mark=square, domain=2010:2030] {19.9867 * pow(x - 2010.6384, 6.561)};
+	\addlegendentry{$H(t)$ (right axis)}
+	\end{axis}
+\end{tikzpicture}
+\quad
+\begin{tikzpicture}
+	\pgfplotsset{
+		width=8cm,
+		height=6cm
+	}
+	\begin{axis}[
+		ybar, bar width=0.5,
+		xlabel={Years $t$ (in A.D.)},
+		ylabel={Tot. energy cons. $E_M$ (TWh)},
+		ymin=0,
+		xtick align=inside,
+		legend pos=north west,
+		title={Pred. crypto. mining energy consumption},
+		grid=major
+	]
+		\addplot[red, fill=red!30, thick, domain=2010:2030] {7.7387e281 * exp(-0.3268 * x) * pow(x - 2010.6384, 6.561)};
+		\addlegendentry{$E_M(t) = \kappa \varepsilon_{\rm opt} (t) H(t) T$}
+	\end{axis}
+\end{tikzpicture}
+\end{document}

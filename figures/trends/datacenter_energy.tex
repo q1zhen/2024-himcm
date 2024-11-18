@@ -1,0 +1,19 @@
+\documentclass{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+\begin{document}
+\begin{tikzpicture}
+	\begin{axis}[
+		width=10cm, height=8cm,
+		ymin=0,
+		grid=major,
+		legend pos=north west,
+		xlabel={Years $t$ (in A.D.)},
+		ylabel={Tot. energy cons. $E_D$ (TWh)}
+	]
+		\addplot[ybar, ybar legend, bar width=0.5, red, fill=red!50, domain=2010:2030] {4.7531e-164 * exp(0.1887 * x)};
+		\addlegendentry{$E_D (t)$}
+	\end{axis}
+\end{tikzpicture}
+\end{document}

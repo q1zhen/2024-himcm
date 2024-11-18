@@ -1,0 +1,49 @@
+\documentclass{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+\begin{document}
+\begin{tikzpicture}
+	\begin{axis}[
+		title={Raw data and the final exponential model},
+		xlabel={Years $t$ (in A.D.)},
+		ylabel={Energy cons. $E$ (TWh)},
+		width=8cm, height=6cm,
+		legend cell align={left},
+		legend pos=north west,
+		ymin=0,
+		grid=major
+	]
+		\addplot[ybar, ybar legend, brown, thick, fill=brown!20] table[
+			col sep=comma,
+			x=year,
+			y=energy,
+		] {../../data/google/data.csv};
+		\addlegendentry{Real data}
+		\addplot[red, mark=o, domain=2011:2023] {4.1643e-165 * exp(0.1887 * x)};
+		\addlegendentry{Fit}
+	\end{axis}
+\end{tikzpicture}
+\quad
+\begin{tikzpicture}
+	\begin{axis}[
+		title={Post-log data and linear regression},
+		xlabel={Years $t$ (in A.D.)},
+		ylabel={$\ln (E)$},
+		width=8cm, height=6cm,
+		legend cell align={left},
+		legend pos=north west,
+		ymin=0,
+		grid=major
+	]
+		\addplot[ybar, ybar legend, black, thick, fill=black!20] table[
+			col sep=comma,
+			x=year,
+			y=lne,
+		] {../../data/google/data.csv};
+		\addlegendentry{Real data}
+		\addplot[red, mark=o, domain=2011:2023] {0.1887 * x - 378.5};
+		\addlegendentry{Linear fit}
+	\end{axis}
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,49 @@
+\documentclass{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+\begin{document}
+\begin{tikzpicture}
+	\begin{axis}[
+		title={Raw data and the final exponential model},
+		xlabel={Years $t$ (in A.D.)},
+		ylabel={Best efficiency $\varepsilon_{\rm opt}$ (J/TH)},
+		width=8cm, height=6cm,
+		legend cell align={left},
+		legend pos=north east,
+		ymin=0,
+		grid=major
+	]
+		\addplot[ybar, ybar legend, teal, thick, fill=teal!20] table[
+			col sep=comma,
+			x=year,
+			y=eff,
+		] {../../data/crypto/miners.csv};
+		\addlegendentry{Real data}
+		\addplot[red, mark=o, domain=2015:2024] {2.6e288 * exp(-0.3268 * x)};
+		\addlegendentry{Fit}
+	\end{axis}
+\end{tikzpicture}
+\quad
+\begin{tikzpicture}
+	\begin{axis}[
+		title={Post-log data and linear regression},
+		xlabel={Years $t$ (in A.D.)},
+		ylabel={$\ln \left(\varepsilon_{\rm opt}\right)$},
+		width=8cm, height=6cm,
+		legend cell align={left},
+		legend pos=north east,
+		ymin=0,
+		grid=major
+	]
+		\addplot[ybar, ybar legend, blue, thick, fill=blue!20] table[
+			col sep=comma,
+			x=year,
+			y=lneff,
+		] {../../data/crypto/miners.csv};
+		\addlegendentry{Real data}
+		\addplot[red, mark=o, domain=2015:2024] {-0.3268 * x + 664.1)};
+		\addlegendentry{Linear fit}
+	\end{axis}
+\end{tikzpicture}
+\end{document}
