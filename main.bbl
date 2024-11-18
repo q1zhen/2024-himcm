@@ -1,13 +1,28 @@
 \begin{thebibliography}{}
 
+\bibitem[{ASIC Miner Value}, 2015]{best_miner_2015}
+{ASIC Miner Value} (2015).
+\newblock Miners efficiency.
+
 \bibitem[Blockchain.com, 2024]{hashrate}
 Blockchain.com (2024).
 \newblock Bitcoin total hash rate.
+
+\bibitem[Cameron and chun Feng, 2024]{top500}
+Cameron, K.~W. and chun Feng, W. (2024).
+\newblock {\em Performance development}.
+\newblock TOP500.
 
 \bibitem[Cast.ai, 2024]{kubernetes_report}
 Cast.ai (2024).
 \newblock {\em 2024 Kubernetes Cost Benchmark Report}.
 \newblock Cast.ai.
+
+\bibitem[Chamanara et~al., 2023]{bitcoin_mix}
+Chamanara, S., Ghaffarizadeh, S.~A., and Madani, K. (2023).
+\newblock The environmental footprint of bitcoin mining across the globe: Call for urgent action.
+\newblock {\em Earth's Future}, 11(10):e2023EF003871.
+\newblock e2023EF003871 2023EF003871.
 
 \bibitem[Datacenters.com, 2024]{datacenters_com}
 Datacenters.com (2024).
@@ -23,12 +38,34 @@ Digiconomist (2017).
 \newblock {\em A Deep Dive in a Real-World Bitcoin Mine}.
 \newblock Digiconomist.
 
+\bibitem[Ember, 2024]{emission_dataset}
+Ember (2024).
+\newblock {Power sector emissions worldwide from 2000 to 2023, by source}.
+
+\bibitem[Google, 2024]{google_report}
+Google (2024).
+\newblock {\em Google 2024 Environmental Report}.
+\newblock Google.
+
 \bibitem[IEA, 2024]{energy_mix_dataset}
 IEA (2024).
 \newblock {World Energy Balances 2024 Highlights (free extract)}.
 
+\bibitem[Laroche, 2022]{best_miner_2022}
+Laroche, T. (2022).
+\newblock Best bitcoin miners for mining bitcoin in 2022.
+
 \bibitem[Neeti and Selvasundar, 2024]{best_miner}
 Neeti and Selvasundar, V. (2024).
 \newblock {\em Best Bitcoin Miners \& Crypto Mining Rigs: Ultimate Guide for ASIC Miners In 2024}.
+\newblock The Coingape Marketing Editor Team.
+
+\bibitem[Su, 2021]{best_miner_2021}
+Su, H. (2021).
+\newblock Top cryptocurrency mining hardware in 2021.
+
+\bibitem[Su, 2023]{best_miner_2023}
+Su, H. (2023).
+\newblock Top 10 most profitable bitcoin mining machines in 2023.
 
 \end{thebibliography}

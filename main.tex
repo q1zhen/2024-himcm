@@ -64,9 +64,9 @@
 
 Under the current global trend of technology advancement, high-powered computing (HPC) is gaining rising attention for the increasing demand of computationally intensive tasks such as data science, artificial intelligence (AI) training, and cryptocurrency mining.
 
-It is very common to use a massive number of dedicated hardware with strong computating power for these tasks. Data centers are the specific spaces to hold these hardware. The operation of data centers is usually extremely energy-consuming, with a tremendous demand of electricity to keep the computer systems running and to cool them down. Cryptocurrency mining machine clusters also work similarly to data centers, with all resources dedicated for mining. The intensive use of electricity, contributing heavily to global warming, as well as a lot of other problems, e.g. water usage, e-waste, etc., poses the environmental concerns of HPC.
+It is very common to use a massive number of dedicated hardware with strong computating power for these tasks. Data centers are the specific spaces to hold these hardware. The operation of data centers is usually extremely energy-consuming, with a tremendous demand of electricity to keep the computer systems running and to cool them down.\todo{statistics about electricity} Cryptocurrency mining machine clusters also work similarly to data centers, with all resources dedicated for mining. The intensive use of electricity, contributing heavily to global warming, as well as a lot of other problems, e.g. water usage, e-waste, etc., poses the environmental concerns of HPC.
 
-As sustainability arising as one of the most important development goals in the twenty-first century, it is high time we take action to assess the environmental consequences of HPC and to minimize its negative effects. We proposed an approach to evaluate the environmental impacts due to HPC through mathematical models.
+As sustainability arises as one of the most important development goals in the twenty-first century, it is high time we take action to assess the environmental consequences of HPC and to minimize its negative effects. We proposed an approach to evaluate the environmental impacts due to HPC through mathematical models.
 
 \todo{add more about past researches on energy demands; cites needed}
 
@@ -114,7 +114,7 @@ In this section, we model the annual worldwide energy consumption of \textit{hig
 
 \subsection{Model overview}
 
-\begin{table}[t]
+\begin{table}[!t]
 	\centering
 	\caption{Definition of symbols. Units: TWh: terawatt hours; MW: megawatts; TH: terahashes.}
 	\label{table_symbols_q1}
@@ -175,6 +175,7 @@ We define $\kappa$ as the ratio between the average efficiency $\overline{\varep
 Finally, we multiply the power with the one-year time $T$ to get the annual energy consumption:
 \begin{equation}
 	E_M = PT = \kappa \varepsilon_{\rm opt} HT;
+	\label{eq_crypto_energy}
 \end{equation}
 this is both the \textit{full capacity} level and the \textit{average utilization} level since cryptocurrency mining is assumed to be always operating at the maximum utilization possible.
 
@@ -197,7 +198,7 @@ To assess the accuracy of the energy consumption model, we substitute existing d
 
 We acquired data from \textit{datacenters.com}, a website offering detailed information of data centers worldwide. 4342 data centers \citep{datacenters_com} are included, with information of each's name, location, provider, space, total power, etc. Table \ref{table_data_datacenters.com} shows some of the results from the website.
 
-\begin{table}[t]
+\begin{table}[!t]
 	\centering
 	\caption{Some records of data center information from \textit{datacenters.com}. Only columns including data related to the model are displayed; names and addresses that are too long are truncated.}
 	\label{table_data_datacenters.com}
@@ -224,20 +225,20 @@ We acquired data from \textit{datacenters.com}, a website offering detailed info
 
 We plotted the distribution of the data as in Figure \ref{fig_data_datacenters_original}; it is worth mentioning that there are two very significant outlier values (denoted yellow on the top) exceeding $10^6$ megawatts. Obviously, it is improbable for those two data centers to consume about 13 times more power than the sum of all other ones (more intuitively, taking up almost 5\% of the total human power consumption); therefore, the data is very possibly incorrectly recorded or in a wrong unit. We thereby removed the two, and now all data are in a reasonable range, as shown in Figure \ref{fig_data_datacenters_clean}.
 
-\begin{figure}[t]
+\begin{figure}[!t]
 	\centering
 	\begin{minipage}{0.48\textwidth}
 		\centering
-		\includegraphics{figures/data/datacenters.pdf}
 		\caption{The original dataset.}
 		\label{fig_data_datacenters_original}
+		\includegraphics{figures/data/datacenters.pdf}
 	\end{minipage}
 	\hfill
 	\begin{minipage}{0.48\textwidth}
 		\centering
-		\includegraphics{figures/data/datacenters_clean.pdf}
 		\caption{The dataset with outliers removed.}
 		\label{fig_data_datacenters_clean}
+		\includegraphics{figures/data/datacenters_clean.pdf}
 	\end{minipage}
 \end{figure}
 
@@ -290,11 +291,14 @@ Assumptions in Section \ref{sec_energy_model_assumptions} are still used in this
 	\item All data, such as total power and energy mix, are discretized for each year, i.e., within one year, the data is uniform and does not change. \\
 	\textbf{Justification:} This assumption is to match most of the data that comes in the form of annual statistics. Since the model aims to provide insights on the current state and long-term future predictions of carbon emissions, ignoring the temporal variations within one year simplifies the model and makes it easier to be implemented from data.
 
-	\item Each type of energy source has a same carbon emission per unit energy everywhere. \\
-	\textbf{Justification:} In reality, a same type of energy source may have different carbon emissions in different places (e.g., the difference in the effectiveness of wind power due to different natural conditions at different sites). To accurately model this, we would need emissions data at province level or even city level; such differences are ignored because they would make the model too complex while not creating any significant change.
+	\item Each type of energy source has a same fixed carbon emission per unit energy in every country and does not change over time. \\
+	\textbf{Justification:} In reality, a same type of energy source may have different carbon emissions in different places (e.g., the difference in the effectiveness of wind power due to different natural conditions at different sites); technological advancements also reduces carbon emissions (e.g., by increasing the efficiency of resource usages). To accurately model these, we would need time-varying emissions data at province level or even city level; such differences are ignored because they would make the model too complex while not creating any significant change.
+
+	\item The HPC industry is a ever-developing industry throughout the timeframe we are modeling. \\
+	\textbf{Justification:} It is impossible to determine whether, why and when the industry will continue to expand, mature and stagnate, or decay in the future. Since past data of HPC shows its consistent growth in the past years and we are investigating its development over a medium time span (compared with the time range of available data), it is reasonable for us to assume the persistence of this trend and simplify the model.
 \end{enumerate}
 
-\begin{table}[t]
+\begin{table}[!t]
 	\centering
 	\caption{Definition of new symbols. The symbol $x \in \left\{ \rm F, N, R \right\}$ stands for the method of electricity production, respectively fossil fuels (F), nuclear energy (N), and renewable energy (R).}
 	\label{table_symbols_q2}
@@ -316,9 +320,9 @@ Assumptions in Section \ref{sec_energy_model_assumptions} are still used in this
 	\end{tabular}
 \end{table}
 
-\subsection{Carbon emissions at a fixed time}
+\subsection{Carbon emissions at a fixed time (present)}
 
-Similarly, we calculate the total emissions through adding up the two sectors. We categorize all energy sources that are used to produce electricity into three types: fossil fuels (F), nuclear energy (N), and renewable energy (R).
+Similarly, we calculate the total emissions through adding up the two sectors. We categorize all energy sources that are used to produce electricity into three types: fossil fuels (F), nuclear energy (N), and renewable energy (R). In this section, all calculations will use the current data.
 
 \subsubsection{Carbon emission of data centers}
 
@@ -417,9 +421,9 @@ We add up the two sectors to find the total annual carbon emission of HPC:
 		+ \kappa \varepsilon_{\rm opt} HT \boldsymbol{\rm \zeta_M} \vb{M}.
 \end{equation}
 
-We use the World Energy Balances 2024 Highlights (free extract) dataset \citep{energy_mix_dataset} offered by the International Energy Agency (IEA). The dataset includes comprehensive energy mix data over the past fifty years (since 1971) in many countries and broader regions, including total electricity production and production from fossil fuels, nuclear energy, and renewable energy. Figure \ref{fig_emission_data_availability} shows the most accurate data available from the dataset for each country. Countries having the most data centers, such as the U.S., western European countries, China, Japan, Singapore, etc., all have their own country-specific data available. Therefore, the dataset is highly reliable for modeling the energy structure used by data centers worldwide.
+We use the World Energy Balances 2024 Highlights (free extract) dataset \citep{energy_mix_dataset} offered by the International Energy Agency (IEA). The dataset includes comprehensive energy mix data over the past fifty years (since 1971) in many countries and broader regions, including total electricity production and production from fossil fuels, nuclear energy, and renewable energy, as exampled in Table \ref{table_iea_energy_dataset}. Figure \ref{fig_emission_data_availability} shows the most accurate data available from the dataset for each country. Countries having the most data centers, such as the U.S., western European countries, China, Japan, Singapore, etc., all have their own country-specific data available. Therefore, the dataset is highly reliable for modeling the energy structure used by data centers worldwide.
 
-\begin{figure}[t]
+\begin{figure}[!t]
 	\centering
 	\includegraphics{figures/data/emission_map.pdf}
 	\vspace*{-0.5cm}
@@ -427,9 +431,10 @@ We use the World Energy Balances 2024 Highlights (free extract) dataset \citep{e
 	\label{fig_emission_data_availability}
 \end{figure}
 
-\begin{table}[t]
+\begin{table}[!t]
 	\centering
 	\caption{An extract from the IEA World Energy Balances 2024 Highlights dataset.}
+	\label{table_iea_energy_dataset}
 	\small
 	\begin{tabular}{cllrrrrr}
 		\hline
@@ -449,6 +454,197 @@ We use the World Energy Balances 2024 Highlights (free extract) dataset \citep{e
 		\hline
 	\end{tabular}
 \end{table}
+
+We acquired data for power sector emissions worldwide from Ember \citep{emission_dataset}, including carbon emissions due to coal, gas, other fossil, bioenergy, hydro, solar, wind, nuclear, and other renewables, from the year 2000 to 2023. We extracted the data of 2022: 13,665.56Mt from fossil fuels, 13.61Mt from nuclear energy, and 338.61Mt from renewable energies.
+
+Using data from IEA, we know that in 2022 the world produced 17,772,682GWh, 2,685,464GWh, and 8,559,418GWh, respectively, from the three sources. By dividing the emission with the electricity produced, we get the carbon emission created per unit of electricity in 2022 (in t/TWh):
+\begin{equation}
+	\vb{M} = \begin{bmatrix}
+		768,908 \\ 5,068 \\ 39,560
+	\end{bmatrix}.
+\end{equation}
+
+Taking all these data, we have
+\begin{equation}
+	\Psi_D
+	= \overline{\rho} T \vb{P}^\top \boldsymbol{\zeta} \vb{M}
+	= 13\% \times 1 {\rm yr} \times 1.975 {\rm Mt/h} = 2249 {\rm Mt}
+\end{equation}
+\ce{CO2} (Mt: million tons) emitted due to data centers.
+
+\begin{figure}[!t]
+	\centering
+	\includegraphics{figures/data/bitcoin_mix.pdf}
+	\caption{Energy mix of Bitcoin mining.}
+	\label{fig_bitcoin_mix}
+\end{figure}
+
+The energy mix used to supply Bitcoin mining is shown in Figure \ref{fig_bitcoin_mix} \citep{bitcoin_mix}. The energy consumption of the industry is 67\% from fossil fuels, 9\% from nuclear energy, and 24\% from renewable sources. Therefore, we calculate the carbon emission of cryptocurrency mining as
+\begin{equation}
+	\Psi_M = E_M \boldsymbol{\rm \zeta_M} \vb{M}
+	= 131 {\rm TWh} \cdot \begin{bmatrix}
+		0.67 & 0.09 & 0.24
+	\end{bmatrix}\begin{bmatrix}
+		768,908 \\ 5,068 \\ 39,560
+	\end{bmatrix} {\rm t/TWh}
+	= 68.8 {\rm Mt};
+\end{equation}
+hence, the total carbon emission of HPC at present is
+\begin{equation}
+	\Psi = \Psi_D + \Psi_M = 2,249 + 68.8 = 2,317.8 {\rm Mt}.
+\end{equation}
+
+\subsection{Change in carbon emission over time}
+
+Previously, we calculated the carbon emissions created by HPC at present from several components. By modeling the trends of these components' changes over time, we will construct a model for the future predictions.
+
+\subsubsection{Modeling the change of data centers}
+
+Google is one of the largest firms dominating the market of HPC data centers. We consider it as a reliable representative of the whole industry.
+
+From Google 2024 Environmental Report \citep{google_report}, we have Google's annual energy consumption from 2011 to 2023. The data is plotted in Figure \ref{fig_google} (left). Energy consumption is directly related to the expansion of the industry. From the graph, we can identify an increasing rate of increment in annual energy consumption. This is typically defined by a exponential relationship where there is a constant rate of increasing proportion, i.e., constant ratio between two consecutive years.
+
+\begin{figure}[!t]
+	\centering
+	\caption{Trend of Google's annual energy consumption from financial year 2011 to 2023. \textbf{Left:} the real data and the exponential fit deduced from the linear fit of the post-log data in the right side. \textbf{Right:} data normalized using natural logarithm and the linear regression on the processed data.}
+	\label{fig_google}
+	\medskip
+	\includegraphics{figures/trends/google.pdf}	
+\end{figure}
+
+We thereby calculate the natural logarithm of each data to linearize the trend, as shown in Figure \ref{fig_google} (right). It is obvious that the data is now almost perfectly following a linear trend; therefore, the exponential relationship exists and is a proper way to model the change. Through linear regression (having a correlation of $r \approx 0.99$), we have
+\begin{equation}
+	\ln \left(E(t)\right) = 0.1887t - 378.5;
+\end{equation}
+therefore,
+\begin{equation}
+	E(t) = \exp \left(0.1887t - 378.5\right) = 4.1643 \times 10^{-165} \cdot \exp \left(0.1887t\right).
+\end{equation}
+
+Thus, we can calculate the annual increment multiplier $r$ as
+\begin{equation}
+	r = \frac{E\left(t + 1\right)}{E(t)}
+	= \frac{\exp \left(0.1887\left(t + 1\right) - 378.5\right)}{\exp \left(0.1887t - 378.5\right)}
+	= \exp \left(0.1887\right).
+\end{equation}
+
+Using the previously calculated data of current (2024) global energy consumption of 352TWh from HPC data centers, we can model that
+\begin{equation}
+	\begin{aligned}
+		E_D(t) &= E_D(2024) \cdot r^{t - 2024} = 352 \cdot \exp \left(0.1887(t - 2024)\right) \\
+		&= 4.7531 \times 10^{-164} \cdot \exp \left(0.1887t\right),
+	\end{aligned}
+\end{equation}
+for any year $t$. Figure \ref{fig_energy_datacenter} shows the calculated numerical values.
+
+\begin{figure}[!t]
+	\centering
+	\caption{Estimated energy consumption due to HPC data centers.}
+	\label{fig_energy_datacenter}
+	\includegraphics{figures/trends/datacenter_energy.pdf}
+\end{figure}
+
+\subsubsection{Modeling the change of cryptocurrency mining}
+
+As deduced in Equation \ref{eq_crypto_energy}, $E_M = \kappa \varepsilon_{\rm opt} HT$. We assume the ratio $\kappa$ to be constant over time. Since our model will be mostly applied to a medium timeframe, $\kappa$, mainly dependent on the distribution of hardware types, are not likely to fluctuate rapidly as the best efficiency of hardware $\varepsilon_{\rm opt}$ or the total hash rate $H$. We thereby model the change in $\varepsilon_{\rm opt}$ and $H$ over time $t$ respectively.
+
+To investigate the trend of the development of the most energy-efficient cryptocurrency mining machine, we aggregated the various lists of data of all mining machines from a range of hardware vendors, researches, and online cryptocurrency-related databases, for the year of 2015 \citep{best_miner_2015}, 2017 \citep{btc_energy}, 2021 \citep{best_miner_2021}, 2022 \citep{best_miner_2022}, 2023 \citep{best_miner_2023}, and 2024 \citep{best_miner}. The extracted data of the miners with the best (smallest) efficiency, which is defined as $\varepsilon = P / H$, is presented in Table \ref{table_best_miners}.
+
+\begin{table}[!t]
+	\centering
+	\caption{List of the best cryptocurrency mining machine: powers, hash rates, and efficiencies.}
+	\label{table_best_miners}
+	\small
+	\begin{tabular}{c|lrr|r}
+		\hline
+		\textbf{Year} & \textbf{Model} & $\boldsymbol{P}$ (W) & $\boldsymbol{H}$ (TH/s) & $\boldsymbol{\varepsilon}$ (J/TH)\\
+		\hline
+		2015 & Antminer S7 & 1,293 & 4.73 & 273.4 \\
+		2017 & Antminer S9 & 1,372 & 14 & 98.0 \\
+		2021 & Antminer S19 Pro & 3,250 & 110 & 29.5 \\
+		2022 & Antminer S19 XP & 3,010 & 140 & 21.5 \\
+		2023 & Antminer S19 XP Hyd & 5,304 & 255 & 20.8 \\
+		2024 & Antminer S21 & 3,531 & 300 & 11.8 \\
+		\hline
+	\end{tabular}
+\end{table}
+
+\begin{figure}[!t]
+	\centering
+	\caption{The trend of cryptocurrency miner's best efficiency $\varepsilon_{\rm opt}$ over years. \textbf{Left:} the real data and the exponential fit calculated from the linear fit result of post-log data in the right side. \textbf{Right:} data normalized using natural logarithm with the consequential linear fit on post-log data.}
+	\label{fig_miner_trend}
+	\medskip
+	\includegraphics{figures/trends/miner.pdf}
+\end{figure}
+
+As illustrated in the Green500 list from the TOP500 list of supercomputers \citep{top500}, the growth of computational performance per power consumed is exponential. The efficiency $\varepsilon$ defined in this research, which is the ratio of power to hash rate, is the reciprocal of the performance per power; this makes $1/\varepsilon_{\rm opt}$ have an exponential growth over time, i.e., $\varepsilon_{\rm opt}$ would decay exponentially over time (since $1/e^x = e^{-x}$).
+
+A straightforward approach to model the exponential relationship would be linearization of the data. We take the natural logarithm values of the efficiencies, $\ln\left(\varepsilon_{\rm opt}\right)$, and find its relationship with the time $t$, as shown in Figure \ref{fig_miner_trend}. Through linear regression, we get
+\begin{equation}
+	\ln\left(\varepsilon_{\rm opt} (t)\right) = -0.3268t + 664.1,
+\end{equation}
+with a correlation of $r \approx -0.99$, and hence the efficiency can be modeled as
+\begin{align}
+	\varepsilon_{\rm opt} (t) = \exp \left(-0.3268t + 664.1\right)
+	&= 2.6 \times 10^{288} \cdot \exp \left(-0.3268t\right) {\rm J/TH} \\
+	&= 2.6 \times 10^{276} \cdot \exp \left(-0.3268t\right) {\rm TJ/TH}.
+	\label{eq_efficiency}
+\end{align}
+
+The the Bitcoin network's total hash rate data \citep{hashrate} is plotted in Figure \ref{fig_total_hashrate}, starting from January 2009, the time when Bitcoin was created. The total hash rate increases with faster rates over time. Despite having small fluctuations, the pattern should follow either an exponential model (constantly increasing proportion) or a power function model (growth with limiting resources).
+
+\begin{figure}[!t]
+	\centering
+	\caption{Total hash rate of the Bitcoin network over time and comparison across models. January 10, 2009 is selected as the day 0. \textbf{Left:} the ground truth. \textbf{Right:} comparison between the exponential model and the power function model, displayed in linear axis (top) and log scaled axis (bottom).}
+	\label{fig_total_hashrate}
+	\medskip
+	\includegraphics{figures/trends/bitcoin_hashrate.pdf}
+\end{figure}
+
+From Figure \ref{fig_total_hashrate} (right), we see that both the exponential model and the power function model showcase a decent capture of the trend (both with a correlation $r \approx 0.99$). However, when the models are compared within a log scaled $y$-axis, the data actually ``bends'' and does not follow a constantly increasing magnitude. The exponential model has deviations with the data trend, whereas the power function almost perfectly matches the data. Therefore, it can be concluded that the total hash rate follows the model
+\begin{equation}
+	H = 3.087 \times 10^{-16} \cdot (x - 588)^{6.561} \rm TH/s,
+\end{equation}
+where $x$ is the number of days starting from January 10, 2009. Convert $x$ to years $t$ (A.D.) assuming 365 days every year: $t = 2009 + \frac{1}{365}(x + 10) \Rightarrow x = 365 t - 733295$. Therefore,
+\begin{equation}
+	H(t) = 19.9867 \left( t - 2,010.6384 \right)^{6.561} \rm TH/s.
+	\label{eq_hash_rate}
+\end{equation}
+
+Combining Equation \ref{eq_efficiency} and Equation \ref{eq_hash_rate}, we get the model for the total energy consumed by cryptocurrency mining over time:
+\begin{equation}
+	\begin{aligned}
+		E_M (t) &= \kappa \varepsilon_{\rm opt} (t) H(t) T \\
+		&= 1.7 \cdot \left(
+			2.6 \times 10^{276} \cdot \exp \left(-0.3268t\right) {\rm TJ/TH}
+		\right) \cdot \left(
+			19.9867 \left( t - 2,010.6384 \right)^{6.561} {\rm TH/s}
+		\right) \cdot 8,760 {\rm h} \\
+		&= 7.7387 \times 10^{281} \cdot \exp \left(-0.3268t\right) \cdot \left( t - 2,010.6384 \right)^{6.561} {\rm TWh},
+	\end{aligned}
+\end{equation}
+for a given year $t$. The calculated numerical values of this model are shown in Figure \ref{fig_crypto_energy_pred}.
+
+\begin{figure}[!t]
+	\centering
+	\caption{Numerical values of the model from year 2010 to 2030. \textbf{Left:} the values of the predicted components $\varepsilon_{\rm opt}(t)$ and $H(t)$. \textbf{Right:} the estimated total energy consumption of each year.}
+	\label{fig_crypto_energy_pred}
+	\medskip
+	\includegraphics{figures/trends/crypto_energy.pdf}
+\end{figure}
+
+\subsubsection{The effects of change in energy mix}
+
+Previously, we calculated the energy mix of each country $\boldsymbol{\zeta}$ from the dataset offered by IEA. These values also vary over time. We plot an extract of the trends of some countries and sub-regions in Figure \ref{fig_mix_data}. The changes in proportions of the three energy sources all follow a linear relationship.
+
+With the observation on the data, we utilize linear regression to model the trend of each energy source's proportion of each country from the data of year 2010 to 2022.
+
+\begin{figure}[!t]
+	\centering
+	\caption{Some example countries' and sub-regions' energy mix trend from year 2010 to 2022.}
+	\label{fig_mix_data}
+	\includegraphics{figures/mix/mix.pdf}
+\end{figure}
 
 \bibliographystyle{apalike}
 \bibliography{bib.bib}
