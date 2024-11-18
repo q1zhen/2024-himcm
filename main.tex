@@ -391,6 +391,7 @@ where $\overline{\rho}$ is the average utilization rate and $T$ is the time peri
 Through linear combination, we deduce the total annual carbon emissions worldwide due to data centers by calculating the multiplication of annual energy and carbon emission per energy:
 \begin{equation}
 	\Psi_D = \vb{E_D}^\top \vb{C} = \overline{\rho} T \vb{P}^\top \boldsymbol{\zeta} \vb{M}.
+	\label{eq_dc_emission}
 \end{equation}
 
 \subsubsection{Carbon emission of cryptocurrency mining}
@@ -468,7 +469,7 @@ Taking all these data, we have
 \begin{equation}
 	\Psi_D
 	= \overline{\rho} T \vb{P}^\top \boldsymbol{\zeta} \vb{M}
-	= 13\% \times 1 {\rm yr} \times 1.975 {\rm Mt/h} = 2249 {\rm Mt}
+	= 13\% \times 1 {\rm yr} \times 0.130 {\rm Mt/h} = 148 {\rm Mt}
 \end{equation}
 \ce{CO2} (Mt: million tons) emitted due to data centers.
 
@@ -491,7 +492,7 @@ The energy mix used to supply Bitcoin mining is shown in Figure \ref{fig_bitcoin
 \end{equation}
 hence, the total carbon emission of HPC at present is
 \begin{equation}
-	\Psi = \Psi_D + \Psi_M = 2,249 + 68.8 = 2,317.8 {\rm Mt}.
+	\Psi = \Psi_D + \Psi_M = 148 + 68.8 = 216.8 {\rm Mt}.
 \end{equation}
 
 \subsection{Change in carbon emission over time}
@@ -611,7 +612,7 @@ where $x$ is the number of days starting from January 10, 2009. Convert $x$ to y
 	\label{eq_hash_rate}
 \end{equation}
 
-Combining Equation \ref{eq_efficiency} and Equation \ref{eq_hash_rate}, we get the model for the total energy consumed by cryptocurrency mining over time:
+Combining Equation \ref{eq_efficiency} for $\varepsilon_{\rm opt} (t)$ and Equation \ref{eq_hash_rate} for $H(t)$, we get the model for the total energy consumed by cryptocurrency mining over time:
 \begin{equation}
 	\begin{aligned}
 		E_M (t) &= \kappa \varepsilon_{\rm opt} (t) H(t) T \\
@@ -637,13 +638,53 @@ for a given year $t$. The calculated numerical values of this model are shown in
 
 Previously, we calculated the energy mix of each country $\boldsymbol{\zeta}$ from the dataset offered by IEA. These values also vary over time. We plot an extract of the trends of some countries and sub-regions in Figure \ref{fig_mix_data}. The changes in proportions of the three energy sources all follow a linear relationship.
 
-With the observation on the data, we utilize linear regression to model the trend of each energy source's proportion of each country from the data of year 2010 to 2022.
+\begin{figure}[!t]
+	\centering
+	\caption{Some example countries' and sub-regions' energy mix trends from year 2010 to 2022.}
+	\label{fig_mix_data}
+	\includegraphics{figures/mix/mix.pdf}
+\end{figure}
+
+With the observation on the data, we utilize linear regression to model the trend of each energy source's proportion of each country from the data of year 2010 to 2022. Table \ref{table_mix_trend_eqs} shows the results of the linear regression on each of the items.
+
+\begin{table}[!t]
+	\centering
+	\caption{The linear regression results for the trends of proportion $\zeta$ of energy source over time $t$. The country column represents countries by their ISO 3166-1 alpha-2 codes. For meaningful proportion results, the calculated numerical values of the expressions should be clamped to the range $\left[0, 1\right]$.}
+	\label{table_mix_trend_eqs}
+	\small
+	\begin{tabular}{c|r|r|r}
+		\hline
+		\textbf{Country} & \textbf{Fossil fuels} $\zeta_{\rm F}$
+		& \textbf{Nuclear} $\zeta_{\rm N}$ & \textbf{Renewables} $\zeta_{\rm R}$ \\
+		\hline
+		AU & $-0.0158t + 32.78$ & 0.00 & $0.0158t - 31.78$ \\
+		AT & $-0.0081t + 16.55$ & 0.00 & $0.0079t - 15.16$ \\
+		BE & $-0.0086t + 17.59$ & $-0.0060t + 12.59$ & $0.0145t - 29.10$ \\
+		CA & $-0.0042t + 8.655$ & $-0.0008t + 1.749$ & $0.0054t - 10.23$ \\
+		CL & $-0.0123t + 25.27$ & 0.00 & $0.0124t - 24.56$ \\
+		CO & $0.0012t - 2.179$ & 0.00 & $-0.0015t + 3.711$ \\
+		CR & $-0.0091t + 18.48$ & 0.00 & $0.0091t - 17.49$ \\
+		CZ & $-0.0070t + 14.75$ & $0.0028t - 5.389$ & $0.0041t - 8.118$ \\
+		DK & $-0.0415t + 83.98$ & 0.00 & $0.0411t - 82.27$ \\
+		EE & $-0.0290t + 59.30$ & 0.00 & $0.0280t - 56.20$ \\
+		$\vdots$ &&& \\
+		World & $-0.0062t + 13.24$ & $-0.0019t + 4.036$ & $0.0082t - 16.25$ \\
+		\hline
+	\end{tabular}
+\end{table}
+
+According to Equation \ref{eq_dc_emission}, the total annual carbon emission of HPC data centers is $\Psi_D = \overline{\rho} T \vb{P}^\top \boldsymbol{\zeta} \vb{M}$ (unless otherwise stated, the values refer to those of year 2024). Therefore, we combine this definition and the constant expanding rate to get
+\begin{equation}
+	\Psi_D (t) = \overline{\rho} T \left(\vb{P}(t)\right)^\top \boldsymbol{\zeta}(t) \vb{M}
+	= \overline{\rho} T r^{t - 2024} \vb{P}^\top \boldsymbol{\zeta}(t) \vb{M},
+\end{equation}
+where $r = \exp \left(0.1887\right)$ and $\boldsymbol{\zeta}(t)$ is defined in Table \ref{table_mix_trend_eqs}.
 
 \begin{figure}[!t]
 	\centering
-	\caption{Some example countries' and sub-regions' energy mix trend from year 2010 to 2022.}
-	\label{fig_mix_data}
-	\includegraphics{figures/mix/mix.pdf}
+	\caption{}
+	\label{}
+	\includegraphics{figures/trends/datacenter_emission.pdf}
 \end{figure}
 
 \bibliographystyle{apalike}

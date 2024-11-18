@@ -33,6 +33,19 @@ with open("mix_fits.csv", "w+", encoding="utf-8", newline="") as f:
 		}
 		writer.writerow([line[0], line[1][0], k, b])
 
+def trend(i):
+	k = i["k"]
+	b = i["b"]
+	if k == 0 and b == 0:
+		return "0.00"
+	else:
+		return "$%.4ft %s %.4g$" % (k, "+-"[b < 0], abs(b))
+
 for country, value in results.items():
-	print(f"{country} & ")
+	print(" & ".join([
+		country,
+		trend(value["F"]),
+		trend(value["N"]),
+		trend(value["R"]),
+	]), "\\\\")
 
