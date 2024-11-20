@@ -1,0 +1,86 @@
+\documentclass{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+\usepgfplotslibrary{groupplots}
+
+\begin{document}
+\begin{tikzpicture}
+	\begin{groupplot}[
+		group style={
+			group size=3 by 1,
+			xlabels at=edge bottom,
+			xticklabels at=edge bottom,
+			ylabels at=edge left,
+			yticklabels at=edge left,
+			vertical sep=0.2cm,
+			horizontal sep=0.5cm,
+		},
+		width=6cm, height=5cm,
+		grid=major,
+		legend pos=north west,
+		xlabel={Years $t$ (in A.D.)},
+		ylabel={Carbon emission $\Psi$ (Mt)},
+	]
+		\nextgroupplot[title={$M_{\rm F}$}, ymin=0, ymax=800,]
+		\addplot[thick, black, mark=o] table[
+			col sep=comma,
+			x=year,
+			y expr={(\thisrow{pf} * 1153362 + \thisrow{pn} * 5068 + \thisrow{pr} * 39560) * exp(0.1887 * (\thisrow{year} - 2024)) * 8760 * 0.13 * 1e-12 + (\thisrow{mf} * 768908 + \thisrow{mn} * 5068 + \thisrow{mr} * 39560) * 7.7387e281 * exp(-0.3268 * x) * pow(x - 2010.6384, 6.561) * 1.7 * 1e-6},
+		] {../../data/ult.csv};
+		\addlegendentry{1,153,362}
+		\addplot[thick, blue, mark=square] table[
+			col sep=comma,
+			x=year,
+			y expr={(\thisrow{pf} * 768908 + \thisrow{pn} * 5068 + \thisrow{pr} * 39560) * exp(0.1887 * (\thisrow{year} - 2024)) * 8760 * 0.13 * 1e-12 + (\thisrow{mf} * 768908 + \thisrow{mn} * 5068 + \thisrow{mr} * 39560) * 7.7387e281 * exp(-0.3268 * x) * pow(x - 2010.6384, 6.561) * 1.7 * 1e-6},
+		] {../../data/ult.csv};
+		\addlegendentry{768,908}
+		\addplot[thick, red, mark=triangle] table[
+			col sep=comma,
+			x=year,
+			y expr={(\thisrow{pf} * 384454 + \thisrow{pn} * 5068 + \thisrow{pr} * 39560) * exp(0.1887 * (\thisrow{year} - 2024)) * 8760 * 0.13 * 1e-12 + (\thisrow{mf} * 768908 + \thisrow{mn} * 5068 + \thisrow{mr} * 39560) * 7.7387e281 * exp(-0.3268 * x) * pow(x - 2010.6384, 6.561) * 1.7 * 1e-6},
+		] {../../data/ult.csv};
+		\addlegendentry{384,454}
+
+		\nextgroupplot[title={$M_{\rm N}$}, ymin=0, ymax=800,]
+		\addplot[thick, black, mark=o] table[
+			col sep=comma,
+			x=year,
+			y expr={(\thisrow{pf} * 768908 + \thisrow{pn} * 7602 + \thisrow{pr} * 39560) * exp(0.1887 * (\thisrow{year} - 2024)) * 8760 * 0.13 * 1e-12 + (\thisrow{mf} * 768908 + \thisrow{mn} * 5068 + \thisrow{mr} * 39560) * 7.7387e281 * exp(-0.3268 * x) * pow(x - 2010.6384, 6.561) * 1.7 * 1e-6},
+		] {../../data/ult.csv};
+		\addlegendentry{7,602}
+		\addplot[thick, blue, mark=square] table[
+			col sep=comma,
+			x=year,
+			y expr={(\thisrow{pf} * 768908 + \thisrow{pn} * 5068 + \thisrow{pr} * 39560) * exp(0.1887 * (\thisrow{year} - 2024)) * 8760 * 0.13 * 1e-12 + (\thisrow{mf} * 768908 + \thisrow{mn} * 5068 + \thisrow{mr} * 39560) * 7.7387e281 * exp(-0.3268 * x) * pow(x - 2010.6384, 6.561) * 1.7 * 1e-6},
+		] {../../data/ult.csv};
+		\addlegendentry{5,068}
+		\addplot[thick, red, mark=triangle] table[
+			col sep=comma,
+			x=year,
+			y expr={(\thisrow{pf} * 768908 + \thisrow{pn} * 2534 + \thisrow{pr} * 39560) * exp(0.1887 * (\thisrow{year} - 2024)) * 8760 * 0.13 * 1e-12 + (\thisrow{mf} * 768908 + \thisrow{mn} * 5068 + \thisrow{mr} * 39560) * 7.7387e281 * exp(-0.3268 * x) * pow(x - 2010.6384, 6.561) * 1.7 * 1e-6},
+		] {../../data/ult.csv};
+		\addlegendentry{2,534}
+
+		\nextgroupplot[title={$M_{\rm R}$}, ymin=0, ymax=800,]
+		\addplot[thick, black, mark=o] table[
+			col sep=comma,
+			x=year,
+			y expr={(\thisrow{pf} * 768908 + \thisrow{pn} * 5068 + \thisrow{pr} * 59340) * exp(0.1887 * (\thisrow{year} - 2024)) * 8760 * 0.13 * 1e-12 + (\thisrow{mf} * 768908 + \thisrow{mn} * 5068 + \thisrow{mr} * 39560) * 7.7387e281 * exp(-0.3268 * x) * pow(x - 2010.6384, 6.561) * 1.7 * 1e-6},
+		] {../../data/ult.csv};
+		\addlegendentry{59,340}
+		\addplot[thick, blue, mark=square] table[
+			col sep=comma,
+			x=year,
+			y expr={(\thisrow{pf} * 768908 + \thisrow{pn} * 5068 + \thisrow{pr} * 39560) * exp(0.1887 * (\thisrow{year} - 2024)) * 8760 * 0.13 * 1e-12 + (\thisrow{mf} * 768908 + \thisrow{mn} * 5068 + \thisrow{mr} * 39560) * 7.7387e281 * exp(-0.3268 * x) * pow(x - 2010.6384, 6.561) * 1.7 * 1e-6},
+		] {../../data/ult.csv};
+		\addlegendentry{39,560}
+		\addplot[thick, red, mark=triangle] table[
+			col sep=comma,
+			x=year,
+			y expr={(\thisrow{pf} * 768908 + \thisrow{pn} * 5068 + \thisrow{pr} * 19780) * exp(0.1887 * (\thisrow{year} - 2024)) * 8760 * 0.13 * 1e-12 + (\thisrow{mf} * 768908 + \thisrow{mn} * 5068 + \thisrow{mr} * 39560) * 7.7387e281 * exp(-0.3268 * x) * pow(x - 2010.6384, 6.561) * 1.7 * 1e-6},
+		] {../../data/ult.csv};
+		\addlegendentry{19,780}
+	\end{groupplot}
+\end{tikzpicture}
+\end{document}

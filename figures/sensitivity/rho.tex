@@ -1,0 +1,43 @@
+\documentclass{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{groupplots}
+
+\begin{document}
+\begin{tikzpicture}
+	\begin{axis}[
+		title={$\overline{\rho}$},
+		width=6cm, height=5cm,
+		ymin=0,
+		grid=major,
+		legend pos=outer north east,
+		xlabel={Years $t$ (in A.D.)},
+		ylabel={Carbon emission $\Psi$ (Mt)},
+	]
+		\addplot[thick, blue, mark=square] table[
+			col sep=comma,
+			x=year,
+			y expr={(\thisrow{pf} * 768908 + \thisrow{pn} * 5068 + \thisrow{pr} * 39560) * exp(0.1887 * (\thisrow{year} - 2024)) * 8760 * 0.26 * 1e-12 + (\thisrow{mf} * 768908 + \thisrow{mn} * 5068 + \thisrow{mr} * 39560) * 7.7387e281 * exp(-0.3268 * x) * pow(x - 2010.6384, 6.561) * 1.7 * 1e-6},
+		] {../../data/ult.csv};
+		\addlegendentry{0.26}
+		\addplot[thick, teal, mark=oplus] table[
+			col sep=comma,
+			x=year,
+			y expr={(\thisrow{pf} * 768908 + \thisrow{pn} * 5068 + \thisrow{pr} * 39560) * exp(0.1887 * (\thisrow{year} - 2024)) * 8760 * 0.195 * 1e-12 + (\thisrow{mf} * 768908 + \thisrow{mn} * 5068 + \thisrow{mr} * 39560) * 7.7387e281 * exp(-0.3268 * x) * pow(x - 2010.6384, 6.561) * 1.7 * 1e-6},
+		] {../../data/ult.csv};
+		\addlegendentry{0.195}
+		\addplot[thick, black, mark=o] table[
+			col sep=comma,
+			x=year,
+			y expr={(\thisrow{pf} * 768908 + \thisrow{pn} * 5068 + \thisrow{pr} * 39560) * exp(0.1887 * (\thisrow{year} - 2024)) * 8760 * 0.13 * 1e-12 + (\thisrow{mf} * 768908 + \thisrow{mn} * 5068 + \thisrow{mr} * 39560) * 7.7387e281 * exp(-0.3268 * x) * pow(x - 2010.6384, 6.561) * 1.7 * 1e-6},
+		] {../../data/ult.csv};
+		\addlegendentry{0.13}
+		\addplot[thick, red, mark=triangle] table[
+			col sep=comma,
+			x=year,
+			y expr={(\thisrow{pf} * 768908 + \thisrow{pn} * 5068 + \thisrow{pr} * 39560) * exp(0.1887 * (\thisrow{year} - 2024)) * 8760 * 0.065 * 1e-12 + (\thisrow{mf} * 768908 + \thisrow{mn} * 5068 + \thisrow{mr} * 39560) * 7.7387e281 * exp(-0.3268 * x) * pow(x - 2010.6384, 6.561) * 1.7 * 1e-6},
+		] {../../data/ult.csv};
+		\addlegendentry{0.065}
+	\end{axis}
+\end{tikzpicture}
+\end{document}

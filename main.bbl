@@ -8,8 +8,8 @@
 Blockchain.com (2024).
 \newblock Bitcoin total hash rate.
 
-\bibitem[Cameron and chun Feng, 2024]{top500}
-Cameron, K.~W. and chun Feng, W. (2024).
+\bibitem[Cameron and Feng, 2024]{top500}
+Cameron, K.~W. and Feng, W. (2024).
 \newblock {\em Performance development}.
 \newblock TOP500.
 
@@ -38,27 +38,59 @@ Digiconomist (2017).
 \newblock {\em A Deep Dive in a Real-World Bitcoin Mine}.
 \newblock Digiconomist.
 
+\bibitem[Digiconomist, 2024]{digiconomist}
+Digiconomist (2024).
+\newblock {Bitcoin Energy Consumption Index}.
+
 \bibitem[Ember, 2024]{emission_dataset}
 Ember (2024).
 \newblock {Power sector emissions worldwide from 2000 to 2023, by source}.
+
+\bibitem[{Fakta o klimatu}, 2022]{co2conc_warming_relationship}
+{Fakta o klimatu} (2022).
+\newblock How are co2 concentrations related to warming?
 
 \bibitem[Google, 2024]{google_report}
 Google (2024).
 \newblock {\em Google 2024 Environmental Report}.
 \newblock Google.
 
-\bibitem[IEA, 2024]{energy_mix_dataset}
-IEA (2024).
+\bibitem[IEA, 2024a]{energy_mix_dataset}
+IEA (2024a).
 \newblock {World Energy Balances 2024 Highlights (free extract)}.
+
+\bibitem[IEA, 2024b]{IEA2024}
+IEA (2024b).
+\newblock World energy outlook 2024.
+\newblock Technical report, International Energy Agency, Paris.
+
+\bibitem[Islam, 2024]{water_efficiency}
+Islam, M.~A. (2024).
+\newblock {Water-Wise Computing: Addressing Data Center Water Consumption for a Sustainable Future}.
+\newblock In {\em 2024 IEEE Computer Society Annual Symposium on VLSI (ISVLSI)}, pages 514--514, Los Alamitos, CA, USA. IEEE Computer Society.
 
 \bibitem[Laroche, 2022]{best_miner_2022}
 Laroche, T. (2022).
 \newblock Best bitcoin miners for mining bitcoin in 2022.
 
+\bibitem[Myhre et~al., 1998]{co2emission_log}
+Myhre, G., Highwood, E.~J., Shine, K.~P., and Stordal, F. (1998).
+\newblock New estimates of radiative forcing due to well mixed greenhouse gases.
+\newblock {\em Geophysical Research Letters}, 25(14):2715--2718.
+
+\bibitem[{NASA Global Climate Change}, 2024]{co2conc}
+{NASA Global Climate Change} (2024).
+\newblock Carbon dioxide concentration.
+
 \bibitem[Neeti and Selvasundar, 2024]{best_miner}
 Neeti and Selvasundar, V. (2024).
 \newblock {\em Best Bitcoin Miners \& Crypto Mining Rigs: Ultimate Guide for ASIC Miners In 2024}.
 \newblock The Coingape Marketing Editor Team.
+
+\bibitem[{NOAA National Centers for Environmental Information}, 2024]{temperature}
+{NOAA National Centers for Environmental Information} (2024).
+\newblock {\em Monthly Global Climate Report for Annual 2023}.
+\newblock NOAA.
 
 \bibitem[Su, 2021]{best_miner_2021}
 Su, H. (2021).
@@ -67,5 +99,10 @@ Su, H. (2021).
 \bibitem[Su, 2023]{best_miner_2023}
 Su, H. (2023).
 \newblock Top 10 most profitable bitcoin mining machines in 2023.
+
+\bibitem[Trenberth and Smith, 2005]{atmosphere_mass}
+Trenberth, K.~E. and Smith, L. (2005).
+\newblock The mass of the atmosphere: A constraint on global analyses.
+\newblock {\em Journal of Climate}, 18(6):864 -- 875.
 
 \end{thebibliography}

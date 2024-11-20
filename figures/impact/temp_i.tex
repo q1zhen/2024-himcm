@@ -1,0 +1,54 @@
+\documentclass{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+\begin{document}
+\begin{tikzpicture}
+	\begin{axis}[
+		width=14cm, height=8cm,
+		grid=major,
+		legend pos=north west,
+		xlabel={Years $t$ (in A.D.)},
+		ylabel={Increase in temperature ($\rm ^\circ C$)},
+		scaled ticks=false,
+		yticklabel style={
+			/pgf/number format/fixed,
+			/pgf/number format/precision=5
+		},
+		bar width=0.8
+	]
+		\addplot[ybar, ybar legend, thick, black!50, fill=black!30] table[
+			col sep=comma,
+			x=year,
+			y=t,
+		] {../../data/ult.csv};
+		\addlegendentry{Predicted temp. increment}
+		\addplot[ybar, ybar legend, thick, brown, fill=brown!50] table[
+			col sep=comma,
+			x=year,
+			y=half,
+		] {../../data/ult.csv};
+		\addlegendentry{50\% renewable sources}
+		\addplot[ybar, ybar legend, thick, teal, fill=teal!50] table[
+			col sep=comma,
+			x=year,
+			y=all,
+		] {../../data/ult.csv};
+		\addlegendentry{100\% renewable sources}
+		\addplot[blue, very thick, mark=o] table[
+			col sep=comma,
+			x=year,
+			y expr={0.0002106 * pow(0.87, \thisrow{year} - 2023) * \thisrow{expansion}},
+			restrict x to domain=2023:2030,
+		] {../../data/ult.csv};
+		\addlegendentry{$1.5 \rm ^\circ C$ threshold ($r = 0.97$)}
+		\addplot[red, very thick, mark=square] table[
+			col sep=comma,
+			x=year,
+			y expr={0.0002106 * pow(0.97, \thisrow{year} - 2023) * \thisrow{expansion}},
+			restrict x to domain=2023:2030,
+		] {../../data/ult.csv};
+		\addlegendentry{$2 \rm ^\circ C$ threshold ($r = 0.87$)}
+	\end{axis}
+\end{tikzpicture}
+\end{document}

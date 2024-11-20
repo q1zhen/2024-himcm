@@ -1,0 +1,47 @@
+\documentclass{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+\begin{document}
+\begin{tikzpicture}
+	\begin{axis}[
+		width=14cm, height=8cm,
+		ymin=0,
+		grid=major,
+		legend pos=north west,
+		xlabel={Years $t$ (in A.D.)},
+		ylabel={Carbon emission $\Psi$ (Mt)},
+		bar width=0.7
+	]
+		\addplot[ybar, ybar legend, thick, black!50, fill=black!30] table[
+			col sep=comma,
+			x=year,
+			y expr={(\thisrow{pf} * 768908 + \thisrow{pn} * 5068 + \thisrow{pr} * 39560) * exp(0.1887 * (\thisrow{year} - 2024)) * 8760 * 0.13 * 1e-12 + (\thisrow{mf} * 768908 + \thisrow{mn} * 5068 + \thisrow{mr} * 39560) * 7.7387e281 * exp(-0.3268 * x) * pow(x - 2010.6384, 6.561) * 1.7 * 1e-6},
+		] {../../data/ult.csv};
+		\addlegendentry{Real estimated}
+		\addplot[ybar, ybar legend, thick, blue, fill=blue!50] table[
+			col sep=comma,
+			x=year,
+			y expr={((309160 * 0.5 - \thisrow{pn}) * 768908 + \thisrow{pn} * 5068 + 309160 * 0.5 * 39560) * exp(0.1887 * (\thisrow{year} - 2024)) * 8760 * 0.13 * 1e-12 + (0.41 * 768908 + 0.09 * 5068 + 0.5 * 39560) * 7.7387e281 * exp(-0.3268 * x) * pow(x - 2010.6384, 6.561) * 1.7 * 1e-6},
+		] {../../data/ult.csv};
+		\addlegendentry{50\% renewables}
+		\addplot[ybar, ybar legend, thick, cyan, fill=cyan!50] table[
+			col sep=comma,
+			x=year,
+			y expr={309160 * 39560 * exp(0.1887 * (\thisrow{year} - 2024)) * 8760 * 0.13 * 1e-12 + 39560 * 7.7387e281 * exp(-0.3268 * x) * pow(x - 2010.6384, 6.561) * 1.7 * 1e-6},
+		] {../../data/ult.csv};
+		\addlegendentry{100\% renewables}
+		\addplot[
+			red, mark size=5pt,
+			mark=oplus,
+			only marks,
+			error bars/.cd,
+			x dir=both, x explicit
+		] 
+		coordinates {
+			(2023, 216.8) +- (1, 0)
+		};
+		\addlegendentry{Current value}
+	\end{axis}
+\end{tikzpicture}
+\end{document}

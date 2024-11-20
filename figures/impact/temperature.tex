@@ -1,0 +1,27 @@
+\documentclass{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+\begin{document}
+\begin{tikzpicture}
+	\begin{axis}[
+		width=8cm, height=6cm,
+		grid=major,
+		legend pos=north west,
+		xlabel={Years $t$ (in A.D.)},
+		ylabel={Increase in temperature ($\rm ^\circ C$)},
+		scaled ticks=false,
+		yticklabel style={
+			/pgf/number format/fixed,
+			/pgf/number format/precision=5
+		},
+		bar width=0.7
+	]
+		\addplot[ybar, thick, red, fill=orange!50] table[
+			col sep=comma,
+			x=year,
+			y=t
+		] {../../data/ult.csv};
+	\end{axis}
+\end{tikzpicture}
+\end{document}
